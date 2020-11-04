@@ -2,7 +2,7 @@ import csv
 from peewee import *
 
 
-db = PostgresqlDatabase(database='db_3', user='postgres', password='1', host='localhost')     # connector orm with db 
+db = PostgresqlDatabase(database='db_4', user='postgres', password='1', host='localhost')     # connector orm with db 
 
 class Stock(Model):
     symbol = CharField()    # class fields
@@ -34,10 +34,10 @@ def main():
         #     for i in stocks:
         #         Stock.create(**i)
 
-        # var_3
+        # var_3, context manager
         with db.atomic():
             for i in range(0, len(stocks), 50):
-                Stock.insert_many(stocks[i:i+100]).execute()
+                Stock.insert_many(stocks[i:i+50]).execute()
 
 
 
